@@ -2,7 +2,7 @@ import PlaceCard from '../../components/cities-card/place-card';
 import SiteHeader from '../../components/site-header/site-header';
 import { places } from '../../mock/places';
 
-function Favorites(): JSX.Element {
+function FavoritesPage(): JSX.Element {
   return (
     <div className="page">
       <SiteHeader isActive count={3} />
@@ -55,4 +55,4 @@ function Favorites(): JSX.Element {
   );
 }
 
-export default Favorites;
+export default FavoritesPage;
