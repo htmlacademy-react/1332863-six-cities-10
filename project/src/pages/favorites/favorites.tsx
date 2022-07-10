@@ -1,4 +1,4 @@
-import FavoritesCard from '../../components/favorites-card/favorites-card';
+import PlaceCard from '../../components/cities-card/place-card';
 import SiteHeader from '../../components/site-header/site-header';
 import { places } from '../../mock/places';
 
@@ -22,7 +22,7 @@ function Favorites(): JSX.Element {
                 </div>
                 <div className="favorites__places">
                   {places.slice(0, 2).map((place) => (
-                    <FavoritesCard {...place} key={place.id} />
+                    <PlaceCard {...place} classPrefix='favorites__' key={place.id}/>
                   ))}
                 </div>
               </li>
@@ -37,7 +37,7 @@ function Favorites(): JSX.Element {
                 </div>
                 <div className="favorites__places">
                   {places.slice(2, 3).map((place) => (
-                    <FavoritesCard {...place} key={place.id} />
+                    <PlaceCard {...place} classPrefix='favorites__' key={place.id}/>
                   ))}
                 </div>
               </li>

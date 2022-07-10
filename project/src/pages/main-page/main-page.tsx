@@ -1,5 +1,5 @@
 import LocationItem from '../../components/locations-item/locations-item';
-import CitiesCard from '../../components/cities-card/cities-card';
+import PlaceCard from '../../components/cities-card/place-card';
 import SiteHeader from '../../components/site-header/site-header';
 import { places, cities } from '../../mock/places';
 
@@ -49,7 +49,7 @@ function MainPage(): JSX.Element {
               </form>
               <div className="cities__places-list places__list tabs__content">
                 {places.map((place) => (
-                  <CitiesCard {...place} key={place.id} />
+                  <PlaceCard {...place} classPrefix='cities__' key={place.id} />
                 ))}
               </div>
             </section>
