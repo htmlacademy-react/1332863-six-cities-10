@@ -166,7 +166,7 @@ function PropertyPage({propertyRating, reviewRating}: PropertyProps): JSX.Elemen
           <section className="near-places places">
             <h2 className="near-places__title">Other places in the neighbourhood</h2>
             <div className="near-places__list places__list">
-              {places.map((place) => (
+              {places.slice(0, 3).map((place) => (
                 <PlaceCard {...place} classPrefix='near-places__' key={place.id}/>
               ))}
             </div>
