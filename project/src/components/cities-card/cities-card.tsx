@@ -1,19 +1,24 @@
-type PlaceCardProps = {
-  isPremium: boolean;
-  price: number;
-  rating: number;
-  description: string;
-  housingType: string;
+type CitiesCardProps = {
+	isPremium: boolean;
+	imgSrc: string;
+	price: number;
+	rating: number;
+	description: string;
+	housingType: string;
 };
 
-function PlaceCard(props: PlaceCardProps): JSX.Element {
-  const {isPremium, price, rating, description, housingType} = props;
+function CitiesCard(props: CitiesCardProps): JSX.Element {
+  const { isPremium, imgSrc, price, rating, description, housingType } = props;
   return (
     <article className="cities__card place-card">
-      {isPremium && <div className="place-card__mark"><span>Premium</span></div>}
+      {isPremium && (
+        <div className="place-card__mark">
+          <span>Premium</span>
+        </div>
+      )}
       <div className="cities__image-wrapper place-card__image-wrapper">
         <a href="\#">
-          <img className="place-card__image" src="img/apartment-01.jpg" width="260" height="200" alt="Place"/>
+          <img className="place-card__image" src={imgSrc} width="260" height="200" alt="Place" />
         </a>
       </div>
       <div className="place-card__info">
@@ -31,7 +36,7 @@ function PlaceCard(props: PlaceCardProps): JSX.Element {
         </div>
         <div className="place-card__rating rating">
           <div className="place-card__stars rating__stars">
-            <span style={{width: `${rating}%`}}></span>
+            <span style={{ width: `${rating}%` }}></span>
             <span className="visually-hidden">Rating</span>
           </div>
         </div>
@@ -44,4 +49,4 @@ function PlaceCard(props: PlaceCardProps): JSX.Element {
   );
 }
 
-export default PlaceCard;
+export default CitiesCard;
