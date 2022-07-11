@@ -1,14 +1,6 @@
-type Places = {
-	id: number;
-	isPremium: boolean;
-	imgSrc: string;
-	price: number;
-	rating: number;
-	description: string;
-	housingType: string;
-};
+import { Place } from '../types/types';
 
-const places: Places[] = [
+const places: Place[] = [
   {
     id: 324123423,
     isPremium: true,
