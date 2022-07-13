@@ -2,12 +2,12 @@ import SiteHeader from '../../components/site-header/site-header';
 import PlaceCard from '../../components/cities-card/place-card';
 import { places } from '../../mock/places';
 
-type PropertyProps = {
+type OfferProps = {
 	propertyRating: number;
   reviewRating: number;
 };
 
-function PropertyPage({propertyRating, reviewRating}: PropertyProps): JSX.Element {
+function OfferPage({propertyRating, reviewRating}: OfferProps): JSX.Element {
   return (
     <div className="page">
       <SiteHeader isActive count={3} />
@@ -177,4 +177,4 @@ function PropertyPage({propertyRating, reviewRating}: PropertyProps): JSX.Elemen
   );
 }
 
-export default PropertyPage;
+export default OfferPage;
