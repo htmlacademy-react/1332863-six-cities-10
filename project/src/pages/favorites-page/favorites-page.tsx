@@ -1,6 +1,6 @@
-import PlaceCard from '../../components/cities-card/place-card';
+import OfferCard from '../../components/offer-card/offer-card';
 import SiteHeader from '../../components/site-header/site-header';
-import { places } from '../../mock/places';
+import { offers } from '../../mocks/offers';
 
 function FavoritesPage(): JSX.Element {
   return (
@@ -21,8 +21,8 @@ function FavoritesPage(): JSX.Element {
                   </div>
                 </div>
                 <div className="favorites__places">
-                  {places.slice(0, 2).map((place) => (
-                    <PlaceCard {...place} classPrefix='favorites__' key={place.id}/>
+                  {offers.slice(0, 2).map((place) => (
+                    <OfferCard {...place} classPrefix="favorites__" key={place.id} />
                   ))}
                 </div>
               </li>
@@ -36,8 +36,8 @@ function FavoritesPage(): JSX.Element {
                   </div>
                 </div>
                 <div className="favorites__places">
-                  {places.slice(2, 3).map((place) => (
-                    <PlaceCard {...place} classPrefix='favorites__' key={place.id}/>
+                  {offers.slice(2, 3).map((offer) => (
+                    <OfferCard {...offer} classPrefix="favorites__" key={offer.id} />
                   ))}
                 </div>
               </li>
@@ -48,7 +48,7 @@ function FavoritesPage(): JSX.Element {
 
       <footer className="footer container">
         <a className="footer__logo-link" href="main.html">
-          <img className="footer__logo" src="img/logo.svg" alt="6 cities logo" width="64" height="33"/>
+          <img className="footer__logo" src="img/logo.svg" alt="6 cities logo" width="64" height="33" />
         </a>
       </footer>
     </div>

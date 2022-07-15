@@ -1,7 +1,9 @@
 import LocationItem from '../../components/locations-item/locations-item';
-import PlaceCard from '../../components/cities-card/place-card';
+import OfferCard from '../../components/offer-card/offer-card';
 import SiteHeader from '../../components/site-header/site-header';
-import { places, cities } from '../../mock/places';
+import { offers } from '../../mocks/offers';
+
+const cities: string[] = ['Paris', 'Cologne', 'Brussels', 'Amsterdam', 'Hamburg', 'Dusseldorf'];
 
 function MainPage(): JSX.Element {
   return (
@@ -14,7 +16,7 @@ function MainPage(): JSX.Element {
           <section className="locations container">
             <ul className="locations__list tabs__list">
               {cities.map((citi) => (
-                <LocationItem locationName={citi} isActive key={citi} />
+                <LocationItem locationName={citi} isActive={false} key={citi} />
               ))}
             </ul>
           </section>
@@ -23,7 +25,7 @@ function MainPage(): JSX.Element {
           <div className="cities__places-container container">
             <section className="cities__places places">
               <h2 className="visually-hidden">Places</h2>
-              <b className="places__found">{places.length} places to stay in Amsterdam</b>
+              <b className="places__found">{offers.length} places to stay in Amsterdam</b>
               <form className="places__sorting" action="#" method="get">
                 <span className="places__sorting-caption">Sort by</span>
                 <span className="places__sorting-type" tabIndex={0}>
@@ -48,8 +50,8 @@ function MainPage(): JSX.Element {
                 </ul>
               </form>
               <div className="cities__places-list places__list tabs__content">
-                {places.map((place) => (
-                  <PlaceCard {...place} classPrefix='cities__' key={place.id} />
+                {offers.map((offer) => (
+                  <OfferCard {...offer} classPrefix="cities__" key={offer.id} />
                 ))}
               </div>
             </section>
