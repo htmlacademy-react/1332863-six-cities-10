@@ -1,13 +1,7 @@
 import SiteHeader from '../../components/site-header/site-header';
-import OfferCard from '../../components/offer-card/offer-card';
-import { offers } from '../../mocks/offers';
 
-type OfferProps = {
-	propertyRating: number;
-	reviewRating: number;
-};
 
-function OfferPage({ propertyRating, reviewRating }: OfferProps): JSX.Element {
+function OfferPage(): JSX.Element {
   return (
     <div className="page">
       <SiteHeader isActive count={3} />
@@ -52,7 +46,7 @@ function OfferPage({ propertyRating, reviewRating }: OfferProps): JSX.Element {
               </div>
               <div className="property__rating rating">
                 <div className="property__stars rating__stars">
-                  <span style={{ width: `${propertyRating}%` }}></span>
+                  <span style={{width: '20%'}}></span>
                   <span className="visually-hidden">Rating</span>
                 </div>
                 <span className="property__rating-value rating__value">4.8</span>
@@ -115,7 +109,7 @@ function OfferPage({ propertyRating, reviewRating }: OfferProps): JSX.Element {
                     <div className="reviews__info">
                       <div className="reviews__rating rating">
                         <div className="reviews__stars rating__stars">
-                          <span style={{ width: `${reviewRating}%` }}></span>
+                          <span style={{width: '40%'}}></span>
                           <span className="visually-hidden">Rating</span>
                         </div>
                       </div>
@@ -137,9 +131,6 @@ function OfferPage({ propertyRating, reviewRating }: OfferProps): JSX.Element {
           <section className="near-places places">
             <h2 className="near-places__title">Other places in the neighbourhood</h2>
             <div className="near-places__list places__list">
-              {offers.slice(0, 3).map((offer) => (
-                <OfferCard {...offer} classPrefix="near-places__" key={offer.id} />
-              ))}
             </div>
           </section>
         </div>

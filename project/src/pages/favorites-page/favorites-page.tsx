@@ -1,8 +1,8 @@
 import OfferCard from '../../components/offer-card/offer-card';
 import SiteHeader from '../../components/site-header/site-header';
-import { offers } from '../../mocks/offers';
+import { Offer } from '../../types/types';
 
-function FavoritesPage(): JSX.Element {
+function FavoritesPage(props: {offers: Offer[]}): JSX.Element {
   return (
     <div className="page">
       <SiteHeader isActive count={3} />
@@ -21,8 +21,8 @@ function FavoritesPage(): JSX.Element {
                   </div>
                 </div>
                 <div className="favorites__places">
-                  {offers.slice(0, 2).map((place) => (
-                    <OfferCard {...place} classPrefix="favorites__" key={place.id} />
+                  {props.offers.slice(0, 2).map((offer) => (
+                    <OfferCard offer={offer} classPrefix="favorites__" key={offer.id} />
                   ))}
                 </div>
               </li>
@@ -36,8 +36,8 @@ function FavoritesPage(): JSX.Element {
                   </div>
                 </div>
                 <div className="favorites__places">
-                  {offers.slice(2, 3).map((offer) => (
-                    <OfferCard {...offer} classPrefix="favorites__" key={offer.id} />
+                  {props.offers.slice(2, 3).map((offer) => (
+                    <OfferCard offer={offer} classPrefix="favorites__" key={offer.id} />
                   ))}
                 </div>
               </li>

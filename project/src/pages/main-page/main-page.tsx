@@ -1,11 +1,11 @@
 import LocationItem from '../../components/locations-item/locations-item';
-import OfferCard from '../../components/offer-card/offer-card';
+import OfferList from '../../components/offer-list/offer-list';
 import SiteHeader from '../../components/site-header/site-header';
-import { offers } from '../../mocks/offers';
+import { Offer } from '../../types/types';
 
 const cities: string[] = ['Paris', 'Cologne', 'Brussels', 'Amsterdam', 'Hamburg', 'Dusseldorf'];
 
-function MainPage(): JSX.Element {
+function MainPage(props: {offers: Offer[]}): JSX.Element {
   return (
     <div className="page page--gray page--main">
       <SiteHeader isActive count={4} />
@@ -25,7 +25,7 @@ function MainPage(): JSX.Element {
           <div className="cities__places-container container">
             <section className="cities__places places">
               <h2 className="visually-hidden">Places</h2>
-              <b className="places__found">{offers.length} places to stay in Amsterdam</b>
+              <b className="places__found">{props.offers.length} places to stay in Amsterdam</b>
               <form className="places__sorting" action="#" method="get">
                 <span className="places__sorting-caption">Sort by</span>
                 <span className="places__sorting-type" tabIndex={0}>
@@ -50,9 +50,7 @@ function MainPage(): JSX.Element {
                 </ul>
               </form>
               <div className="cities__places-list places__list tabs__content">
-                {offers.map((offer) => (
-                  <OfferCard {...offer} classPrefix="cities__" key={offer.id} />
-                ))}
+                <OfferList offers={props.offers} classPrefix="cities__"/>
               </div>
             </section>
             <div className="cities__right-section">

@@ -1,7 +1,7 @@
 import { Offer } from '../../types/types';
 
-function OfferCard(props: Offer & { classPrefix: string }): JSX.Element {
-  const { isPremium, previewImage, price, rating, description, type, classPrefix } = props;
+function OfferCard(props: {offer: Offer} & { classPrefix: string }): JSX.Element {
+  const { offer: {isPremium, previewImage, price, rating, description, type}, classPrefix } = props;
   const shortDescription = description
     .split(' ')
     .slice(0, 7)
