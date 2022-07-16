@@ -50,7 +50,7 @@ function MainPage(props: {offers: Offer[]}): JSX.Element {
                 </ul>
               </form>
               <div className="cities__places-list places__list tabs__content">
-                <OfferList offers={props.offers} classPrefix="cities__"/>
+                <OfferList offers={props.offers}/>
               </div>
             </section>
             <div className="cities__right-section">

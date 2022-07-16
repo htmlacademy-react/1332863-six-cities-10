@@ -1,8 +1,7 @@
 import { Offer } from '../../types/types';
-import { Link } from 'react-router-dom';
 
-function OfferCard(props: { offer: Offer; getHoveredCard: (offer: Offer) => void }): JSX.Element {
-  const {offer: {isPremium, previewImage, price, rating, description, type, id}, getHoveredCard} = props;
+function FavoritesCard(props: Offer): JSX.Element {
+  const {isPremium, previewImage, price, rating, description, type} = props;
 
   const shortDescription = description
     .split(' ')
@@ -11,14 +10,14 @@ function OfferCard(props: { offer: Offer; getHoveredCard: (offer: Offer) => void
     .replace(/(\.|,)$/, '');
 
   return (
-    <article onMouseEnter={() => getHoveredCard(props.offer)} className='cities__card place-card' >
+    <article className='favorites__card place-card'>
       {isPremium && (
         <div className="place-card__mark">
           <span>Premium</span>
         </div>
       )}
-      <div className='cities__image-wrapper place-card__image-wrapper'>
-        <Link to={`/offer/${String(id)}`}>
+      <div className='favorites__image-wrapper place-card__image-wrapper'>
+        <a href="\#">
           <img
             className="place-card__image"
             src={previewImage}
@@ -26,9 +25,9 @@ function OfferCard(props: { offer: Offer; getHoveredCard: (offer: Offer) => void
             height='200'
             alt="Place"
           />
-        </Link>
+        </a>
       </div>
-      <div className='place-card__info'>
+      <div className='favorites__card-info place-card__info'>
         <div className="place-card__price-wrapper">
           <div className="place-card__price">
             <b className="place-card__price-value">&euro;{price}</b>
@@ -48,7 +47,7 @@ function OfferCard(props: { offer: Offer; getHoveredCard: (offer: Offer) => void
           </div>
         </div>
         <h2 className="place-card__name">
-          <Link to={`/offer/${String(id)}`}>{shortDescription}</Link>
+          <a href="\#">{shortDescription}</a>
         </h2>
         <p className="place-card__type">{type}</p>
       </div>
@@ -56,4 +55,4 @@ function OfferCard(props: { offer: Offer; getHoveredCard: (offer: Offer) => void
   );
 }
 
-export default OfferCard;
+export default FavoritesCard;

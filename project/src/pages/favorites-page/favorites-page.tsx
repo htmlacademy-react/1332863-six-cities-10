@@ -1,8 +1,9 @@
-import OfferCard from '../../components/offer-card/offer-card';
+import FavoritesCard from '../../components/favorites-card/favorites-card';
 import SiteHeader from '../../components/site-header/site-header';
 import { Offer } from '../../types/types';
 
 function FavoritesPage(props: {offers: Offer[]}): JSX.Element {
+
   return (
     <div className="page">
       <SiteHeader isActive count={3} />
@@ -22,7 +23,7 @@ function FavoritesPage(props: {offers: Offer[]}): JSX.Element {
                 </div>
                 <div className="favorites__places">
                   {props.offers.slice(0, 2).map((offer) => (
-                    <OfferCard offer={offer} classPrefix="favorites__" key={offer.id} />
+                    <FavoritesCard {...offer} key={offer.id} />
                   ))}
                 </div>
               </li>
@@ -37,7 +38,7 @@ function FavoritesPage(props: {offers: Offer[]}): JSX.Element {
                 </div>
                 <div className="favorites__places">
                   {props.offers.slice(2, 3).map((offer) => (
-                    <OfferCard offer={offer} classPrefix="favorites__" key={offer.id} />
+                    <FavoritesCard {...offer} key={offer.id} />
                   ))}
                 </div>
               </li>

@@ -13,18 +13,16 @@ function App(props: {offers: Offer[]}): JSX.Element {
     <BrowserRouter>
       <Routes>
         <Route path={AppRoute.Root}>
-          <Route index element={<MainPage offers={props.offers}/>}/>
-          <Route path={AppRoute.Login} element={<LoginPage/>}/>
-          <Route
-            path={AppRoute.Favorites}
-            element={
-              <PrivateRoute authorizationStatus={AuthorizationStatus.NoAuth}>
-                <FavoritesPage offers={props.offers}/>
-              </PrivateRoute>
-            }
+          <Route index element={<MainPage offers={props.offers} />} />
+          <Route path={AppRoute.Login} element={<LoginPage />} />
+          <Route path={AppRoute.Favorites} element={
+            <PrivateRoute authorizationStatus={AuthorizationStatus.NoAuth}>
+              <FavoritesPage offers={props.offers} />
+            </PrivateRoute>
+          }
           />
-          <Route path={AppRoute.Offer} element={<OfferPage/>}/>
-          <Route path="*" element={<PageNotFound/>}/>
+          <Route path={AppRoute.Offer} element={<OfferPage offers={props.offers} />} />
+          <Route path="*" element={<PageNotFound />} />
         </Route>
       </Routes>
     </BrowserRouter>

@@ -1,13 +1,20 @@
+import { useState } from 'react';
 import OfferCard from '../offer-card/offer-card';
 import { Offer } from '../../types/types';
 
-function OfferList(props: {offers: Offer[]} & { classPrefix: string }): JSX.Element {
+function OfferList(props: {offers: Offer[]}): JSX.Element {
+  const [, setHoveredCard] = useState<Offer | null>(null);
+
+  const getHoveredCard = (offer: Offer) => {
+    setHoveredCard(offer);
+  };
+
   return (
-    <ul className="locations__list tabs__list">
+    <>
       {props.offers.map((offer) => (
-        <OfferCard offer={offer} classPrefix={props.classPrefix} key={offer.id} />
+        <OfferCard offer={offer} getHoveredCard={getHoveredCard} key={offer.id} />
       ))}
-    </ul>
+    </>
   );
 }
 

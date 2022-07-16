@@ -1,7 +1,13 @@
 import SiteHeader from '../../components/site-header/site-header';
+import { useParams } from 'react-router-dom';
+import { Offer } from '../../types/types';
 
 
-function OfferPage(): JSX.Element {
+function OfferPage(props: {offers: Offer[]}): JSX.Element {
+  const {id} = useParams();
+  const currentOffer = props.offers.find((offer) => String(offer.id) === id);
+  console.log(currentOffer);
+
   return (
     <div className="page">
       <SiteHeader isActive count={3} />
