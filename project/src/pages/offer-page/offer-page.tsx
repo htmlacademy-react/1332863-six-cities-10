@@ -6,10 +6,7 @@ import { Offer } from '../../types/types';
 
 function OfferPage(props: {offers: Offer[]}): JSX.Element {
   const {id} = useParams();
-  let currentOffer: Offer | {images: []} | undefined = (props.offers.find((offer) => String(offer.id) === id));
-  if (!currentOffer) {
-    currentOffer = {images: []};
-  }
+  const currentOffer: Offer | undefined = (props.offers.find((offer) => String(offer.id) === id));
 
   return (
     <div className="page">
@@ -19,7 +16,7 @@ function OfferPage(props: {offers: Offer[]}): JSX.Element {
         <section className="property">
           <div className="property__gallery-container container">
             <div className="property__gallery">
-              <OfferGallery images={currentOffer?.images} />
+              {currentOffer ? <OfferGallery images={currentOffer.images} /> : <div>Хоспаде Иисусе, неужели фсё!</div>}
             </div>
           </div>
           <div className="property__container container">
