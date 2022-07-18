@@ -1,6 +1,7 @@
 import SiteHeader from '../../components/site-header/site-header';
 import OfferGallery from '../../components/offer-gallery/offer-gallery';
 import OfferItems from '../../components/offer-items/offer-items';
+import NearPlacesCard from '../../components/near-places-card/near-places-card';
 import { useParams } from 'react-router-dom';
 import { Offer } from '../../types/types';
 
@@ -29,8 +30,8 @@ function OfferPage(props: {offers: Offer[]}): JSX.Element {
 
               <div className="property__name-wrapper">
                 <h1 className="property__name">{currentOffer?.title}</h1>
-                <button className="property__bookmark-button button" type="button">
-                  <svg className="property__bookmark-icon" width="31" height="33">
+                <button className={`property__bookmark-button ${currentOffer && currentOffer.isFavorite ? 'property__bookmark-button--active' : ''} button`} type="button">
+                  <svg className="place-card__bookmark-icon" width="31" height="33">
                     <use xlinkHref="#icon-bookmark"></use>
                   </svg>
                   <span className="visually-hidden">To bookmarks</span>
@@ -113,6 +114,9 @@ function OfferPage(props: {offers: Offer[]}): JSX.Element {
           <section className="near-places places">
             <h2 className="near-places__title">Other places in the neighbourhood</h2>
             <div className="near-places__list places__list">
+              {props.offers.slice(0, 3).map((nearOffer) => (
+                <NearPlacesCard {...nearOffer} key={nearOffer.id} />
+              ))}
             </div>
           </section>
         </div>
