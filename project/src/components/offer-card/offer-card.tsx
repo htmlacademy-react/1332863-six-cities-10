@@ -2,7 +2,7 @@ import { Offer } from '../../types/types';
 import { Link } from 'react-router-dom';
 
 function OfferCard(props: { offer: Offer; getHoveredCard: (offer: Offer) => void }): JSX.Element {
-  const {offer: {isPremium, previewImage, price, rating, description, type, id}, getHoveredCard} = props;
+  const {offer: {isFavorite, isPremium, previewImage, price, rating, description, type, id}, getHoveredCard} = props;
 
   const shortDescription = description
     .split(' ')
@@ -34,7 +34,7 @@ function OfferCard(props: { offer: Offer; getHoveredCard: (offer: Offer) => void
             <b className="place-card__price-value">&euro;{price}</b>
             <span className="place-card__price-text">&#47;&nbsp;night</span>
           </div>
-          <button className='place-card__bookmark-button button' type="button">
+          <button className={`place-card__bookmark-button ${isFavorite ? 'place-card__bookmark-button--active' : ''} button`} type="button">
             <svg className="place-card__bookmark-icon" width="18" height="19">
               <use xlinkHref="#icon-bookmark"></use>
             </svg>

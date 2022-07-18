@@ -3,6 +3,7 @@ import SiteHeader from '../../components/site-header/site-header';
 import { Offer } from '../../types/types';
 
 function FavoritesPage(props: {offers: Offer[]}): JSX.Element {
+  const favoriteCities: string[] = [ ...new Set(props.offers.map((item) => item.city.name))];
 
   return (
     <div className="page">
@@ -13,35 +14,24 @@ function FavoritesPage(props: {offers: Offer[]}): JSX.Element {
           <section className="favorites">
             <h1 className="favorites__title">Saved listing</h1>
             <ul className="favorites__list">
-              <li className="favorites__locations-items">
-                <div className="favorites__locations locations locations--current">
-                  <div className="locations__item">
-                    <a className="locations__item-link" href="\#">
-                      <span>Amsterdam</span>
-                    </a>
+              {favoriteCities.map((cityName) => (
+                <li className="favorites__locations-items" key={cityName + Math.random()}>
+                  <div className="favorites__locations locations locations--current">
+                    <div className="locations__item">
+                      <a className="locations__item-link" href="\#">
+                        <span>{cityName}</span>
+                      </a>
+                    </div>
                   </div>
-                </div>
-                <div className="favorites__places">
-                  {props.offers.slice(0, 2).map((offer) => (
-                    <FavoritesCard {...offer} key={offer.id} />
-                  ))}
-                </div>
-              </li>
-
-              <li className="favorites__locations-items">
-                <div className="favorites__locations locations locations--current">
-                  <div className="locations__item">
-                    <a className="locations__item-link" href="\#">
-                      <span>Cologne</span>
-                    </a>
+                  <div className="favorites__places">
+                    {props.offers
+                      .filter((offer) => offer.city.name === cityName)
+                      .map((offer) => (
+                        <FavoritesCard {...offer} key={offer.id} />
+                      ))}
                   </div>
-                </div>
-                <div className="favorites__places">
-                  {props.offers.slice(2, 3).map((offer) => (
-                    <FavoritesCard {...offer} key={offer.id} />
-                  ))}
-                </div>
-              </li>
+                </li>
+              ))}
             </ul>
           </section>
         </div>

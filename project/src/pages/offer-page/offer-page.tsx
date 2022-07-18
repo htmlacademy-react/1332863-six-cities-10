@@ -8,8 +8,6 @@ import { Offer } from '../../types/types';
 function OfferPage(props: {offers: Offer[]}): JSX.Element {
   const {id} = useParams();
   const currentOffer: Offer | undefined = (props.offers.find((offer) => String(offer.id) === id));
-  // eslint-disable-next-line no-console
-  console.log(currentOffer);
 
   return (
     <div className="page">

@@ -16,7 +16,7 @@ function App(props: {offers: Offer[]}): JSX.Element {
           <Route index element={<MainPage offers={props.offers} />} />
           <Route path={AppRoute.Login} element={<LoginPage />} />
           <Route path={AppRoute.Favorites} element={
-            <PrivateRoute authorizationStatus={AuthorizationStatus.NoAuth}>
+            <PrivateRoute authorizationStatus={AuthorizationStatus.Auth}>
               <FavoritesPage offers={props.offers} />
             </PrivateRoute>
           }
