@@ -2,6 +2,7 @@ import SiteHeader from '../../components/site-header/site-header';
 import OfferGallery from '../../components/offer-gallery/offer-gallery';
 import OfferItems from '../../components/offer-items/offer-items';
 import NearPlacesCard from '../../components/near-places-card/near-places-card';
+import ReviewForm from '../../components/review-form/review-form';
 import { useParams } from 'react-router-dom';
 import { Offer } from '../../types/types';
 
@@ -105,6 +106,7 @@ function OfferPage(props: {offers: Offer[]}): JSX.Element {
                     </div>
                   </li>
                 </ul>
+                <ReviewForm />
               </section>
             </div>
           </div>

@@ -1,13 +1,3 @@
-export type Place = {
-	id: number;
-	isPremium: boolean;
-	imgSrc: string;
-	price: number;
-	rating: number;
-	description: string;
-	housingType: string;
-};
-
 type CityLocation = {
   latitude: number;
   longitude: number;
