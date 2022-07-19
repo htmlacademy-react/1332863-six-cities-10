@@ -39,9 +39,7 @@ function ReviewForm():JSX.Element {
   return (
     <form className="reviews__form form" action="#" method="post" onSubmit={(evt: FormEvent<HTMLFormElement>) => {
       evt.preventDefault();
-      if (isReviewLongEnough()) {
-        onSendReview(formState.rating, formState.review);
-      }
+      onSendReview(formState.rating, formState.review);
     }}
     >
       <label className="reviews__label form__label" htmlFor="review">Your review</label>
@@ -53,7 +51,7 @@ function ReviewForm():JSX.Element {
         <p className="reviews__help">
           To submit review please make sure to set <span className="reviews__star">rating</span> and describe your stay with at least <b className="reviews__text-amount">50 characters</b>.
         </p>
-        <button className="reviews__submit form__submit button" type="submit" disabled={isReviewLongEnough()}>Submit</button>
+        <button className="reviews__submit form__submit button" type="submit" disabled={!isReviewLongEnough() || !(formState.rating)}>Submit</button>
       </div>
     </form>
   );
