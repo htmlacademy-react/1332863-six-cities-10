@@ -1,8 +1,11 @@
 import { Offer } from '../../types/types';
 import { Link } from 'react-router-dom';
 
-function OfferCard(props: { offer: Offer; getHoveredCard: (offer: Offer) => void }): JSX.Element {
-  const {offer: {isFavorite, isPremium, previewImage, price, rating, description, type, id}, getHoveredCard} = props;
+function OfferCard(props: { offer: Offer; setHoveredOffer: (offer: Offer) => void }): JSX.Element {
+  const {
+    offer: { isFavorite, isPremium, previewImage, price, rating, description, type, id },
+    setHoveredOffer,
+  } = props;
 
   const shortDescription = description
     .split(' ')
@@ -11,24 +14,18 @@ function OfferCard(props: { offer: Offer; getHoveredCard: (offer: Offer) => void
     .replace(/(\.|,)$/, '');
 
   return (
-    <article onMouseEnter={() => getHoveredCard(props.offer)} className='cities__card place-card' >
+    <article onMouseEnter={() => setHoveredOffer(props.offer)} className="cities__card place-card">
       {isPremium && (
         <div className="place-card__mark">
           <span>Premium</span>
         </div>
       )}
-      <div className='cities__image-wrapper place-card__image-wrapper'>
+      <div className="cities__image-wrapper place-card__image-wrapper">
         <Link to={`/offer/${String(id)}`}>
-          <img
-            className="place-card__image"
-            src={previewImage}
-            width='260'
-            height='200'
-            alt="Place"
-          />
+          <img className="place-card__image" src={previewImage} width="260" height="200" alt="Place" />
         </Link>
       </div>
-      <div className='place-card__info'>
+      <div className="place-card__info">
         <div className="place-card__price-wrapper">
           <div className="place-card__price">
             <b className="place-card__price-value">&euro;{price}</b>

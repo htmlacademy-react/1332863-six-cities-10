@@ -2,7 +2,7 @@ const RATING_TITLE: string[] = ['terribly', 'badly', 'not bad', 'good', 'perfect
 
 type ReviewRatingProps = {
   starNumber: number;
-  rating: number;
+  rating: string;
   ratingChangeHandler: (evt: React.ChangeEvent<HTMLInputElement>) => void;
 };
 

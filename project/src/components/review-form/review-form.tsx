@@ -8,7 +8,7 @@ const MAX_REVIEW_SIMBOLS = 300;
 
 function ReviewForm(): JSX.Element {
   const [formData, setformData] = useState({
-    rating: 0,
+    rating: '',
     review: '',
   });
 
@@ -17,7 +17,7 @@ function ReviewForm(): JSX.Element {
     return reviewLength >= MIN_REVIEW_SIMBOLS && reviewLength <= MAX_REVIEW_SIMBOLS;
   }
 
-  function onSendReview(rating: number, review: string) {
+  function onSendReview(rating: string, review: string) {
     throw new Error('Function \'onSendReview\' isn\'t implemented.');
   }
 
@@ -45,7 +45,7 @@ function ReviewForm(): JSX.Element {
       onSubmit={(evt: FormEvent<HTMLFormElement>) => {
         evt.preventDefault();
         onSendReview(formData.rating, formData.review);
-        setformData({ rating: 0, review: '' });
+        setformData({ rating: '', review: '' });
       }}
     >
       <label className="reviews__label form__label" htmlFor="review">
