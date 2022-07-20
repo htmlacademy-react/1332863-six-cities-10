@@ -1,8 +1,10 @@
-import PlaceCard from '../../components/cities-card/place-card';
+import FavoritesCard from '../../components/favorites-card/favorites-card';
 import SiteHeader from '../../components/site-header/site-header';
-import { places } from '../../mock/places';
+import { Offer } from '../../types/types';
 
-function FavoritesPage(): JSX.Element {
+function FavoritesPage(props: {offers: Offer[]}): JSX.Element {
+  const favoriteCities: string[] = [ ...new Set(props.offers.map((item) => item.city.name))];
+
   return (
     <div className="page">
       <SiteHeader isActive count={3} />
@@ -12,35 +14,24 @@ function FavoritesPage(): JSX.Element {
           <section className="favorites">
             <h1 className="favorites__title">Saved listing</h1>
             <ul className="favorites__list">
-              <li className="favorites__locations-items">
-                <div className="favorites__locations locations locations--current">
-                  <div className="locations__item">
-                    <a className="locations__item-link" href="\#">
-                      <span>Amsterdam</span>
-                    </a>
+              {favoriteCities.map((cityName) => (
+                <li className="favorites__locations-items" key={cityName + Math.random()}>
+                  <div className="favorites__locations locations locations--current">
+                    <div className="locations__item">
+                      <a className="locations__item-link" href="\#">
+                        <span>{cityName}</span>
+                      </a>
+                    </div>
                   </div>
-                </div>
-                <div className="favorites__places">
-                  {places.slice(0, 2).map((place) => (
-                    <PlaceCard {...place} classPrefix='favorites__' key={place.id}/>
-                  ))}
-                </div>
-              </li>
-
-              <li className="favorites__locations-items">
-                <div className="favorites__locations locations locations--current">
-                  <div className="locations__item">
-                    <a className="locations__item-link" href="\#">
-                      <span>Cologne</span>
-                    </a>
+                  <div className="favorites__places">
+                    {props.offers
+                      .filter((offer) => offer.city.name === cityName)
+                      .map((offer) => (
+                        <FavoritesCard {...offer} key={offer.id} />
+                      ))}
                   </div>
-                </div>
-                <div className="favorites__places">
-                  {places.slice(2, 3).map((place) => (
-                    <PlaceCard {...place} classPrefix='favorites__' key={place.id}/>
-                  ))}
-                </div>
-              </li>
+                </li>
+              ))}
             </ul>
           </section>
         </div>
@@ -48,7 +39,7 @@ function FavoritesPage(): JSX.Element {
 
       <footer className="footer container">
         <a className="footer__logo-link" href="main.html">
-          <img className="footer__logo" src="img/logo.svg" alt="6 cities logo" width="64" height="33"/>
+          <img className="footer__logo" src="img/logo.svg" alt="6 cities logo" width="64" height="33" />
         </a>
       </footer>
     </div>
