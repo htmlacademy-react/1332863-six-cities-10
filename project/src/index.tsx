@@ -8,5 +8,7 @@ const root = ReactDOM.createRoot(
 );
 
 root.render(
-  <App offers={offers} />
+  <React.StrictMode>
+    <App offers={offers} />
+  </React.StrictMode>
 );
