@@ -2,11 +2,12 @@ import { useState } from 'react';
 import OfferCard from '../offer-card/offer-card';
 import { Offer } from '../../types/types';
 
-function OfferList(props: { offers: Offer[] }): JSX.Element {
+function OfferList(props: { offers: Offer[], onListItemHover: (hoveredOffer: Offer | null) => void }): JSX.Element {
   const [hoveredOffer, setOffer] = useState<Offer | null>(null);
 
   const setHoveredOffer = (offer: Offer) => {
     setOffer(offer);
+    props.onListItemHover(hoveredOffer);
   };
 
   const temporaryFunction = () => hoveredOffer;
