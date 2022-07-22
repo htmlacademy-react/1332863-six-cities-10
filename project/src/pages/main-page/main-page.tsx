@@ -13,11 +13,15 @@ function MainPage(props: {offers: Offer[]}): JSX.Element {
 
   const [selectedPoint, setSelectedPoint] = useState<Point | undefined>(undefined);
 
-  const onListItemHover = (listItem: Offer | null) => {
+  const handleOfferCardHover = (hoveredOffer: Offer | null) => {
     const currentOffer = props.offers.find((offer) =>
-      offer.id === listItem?.id,
+      offer.id === hoveredOffer?.id,
     );
     setSelectedPoint(currentOffer?.location);
+  };
+
+  const handleOfferCardLeave = () => {
+    setSelectedPoint(undefined);
   };
 
   return (
@@ -64,12 +68,20 @@ function MainPage(props: {offers: Offer[]}): JSX.Element {
                 </ul>
               </form>
               <div className="cities__places-list places__list tabs__content">
-                <OfferList offers={props.offers} onListItemHover={onListItemHover} />
+                <OfferList
+                  offers={props.offers}
+                  onOfferCardHover={handleOfferCardHover}
+                  onOfferCardLeave={handleOfferCardLeave}
+                />
               </div>
             </section>
             <div className="cities__right-section">
               <section className="cities__map map">
-                <Map city={city} points={points} selectedPoint={selectedPoint}/>
+                <Map
+                  city={city}
+                  points={points}
+                  selectedPoint={selectedPoint}
+                />
               </section>
             </div>
           </div>
