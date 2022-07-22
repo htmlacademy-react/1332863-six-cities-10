@@ -1,21 +1,22 @@
-import { useState } from 'react';
 import OfferCard from '../offer-card/offer-card';
 import { Offer } from '../../types/types';
 
-function OfferList(props: { offers: Offer[] }): JSX.Element {
-  const [hoveredOffer, setOffer] = useState<Offer | null>(null);
+type OfferListProps = {
+  offers: Offer[];
+  onOfferCardHover: (hoveredOffer: Offer | null) => void;
+  onOfferCardLeave: () => void;
+}
 
-  const setHoveredOffer = (offer: Offer) => {
-    setOffer(offer);
-  };
-
-  const temporaryFunction = () => hoveredOffer;
-  temporaryFunction();
-
+function OfferList({ offers, onOfferCardHover, onOfferCardLeave }: OfferListProps): JSX.Element {
   return (
     <>
-      {props.offers.map((offer) => (
-        <OfferCard offer={offer} setHoveredOffer={setHoveredOffer} key={offer.id} />
+      {offers.map((offer) => (
+        <OfferCard
+          offer={offer}
+          onOfferCardHover={onOfferCardHover}
+          onOfferCardLeave={onOfferCardLeave}
+          key={offer.id}
+        />
       ))}
     </>
   );

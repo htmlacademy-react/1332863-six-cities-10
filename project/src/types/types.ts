@@ -1,12 +1,12 @@
-type CityLocation = {
+export type Point = {
   latitude: number;
   longitude: number;
   zoom: number;
 };
 
-type City = {
+export type City = {
   name: string;
-  location: CityLocation;
+  location: Point;
 };
 
 type OfferHost = {
@@ -31,6 +31,6 @@ export type Offer = {
   goods: string[];
   host: OfferHost;
   description: string;
-  location: CityLocation;
+  location: Point;
   id: number;
 };

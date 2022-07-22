@@ -1,11 +1,15 @@
-import { Offer } from '../../types/types';
 import { Link } from 'react-router-dom';
+import { Offer } from '../../types/types';
 
-function OfferCard(props: { offer: Offer; setHoveredOffer: (offer: Offer) => void }): JSX.Element {
-  const {
-    offer: { isFavorite, isPremium, previewImage, price, rating, description, type, id },
-    setHoveredOffer,
-  } = props;
+type OfferCardProps = {
+  offer: Offer;
+  onOfferCardHover: (hoveredOffer: Offer | null) => void;
+  onOfferCardLeave: () => void;
+
+}
+
+function OfferCard({ offer, onOfferCardHover, onOfferCardLeave }: OfferCardProps): JSX.Element {
+  const { isFavorite, isPremium, previewImage, price, rating, description, type, id } = offer;
 
   const shortDescription = description
     .split(' ')
@@ -14,7 +18,11 @@ function OfferCard(props: { offer: Offer; setHoveredOffer: (offer: Offer) => voi
     .replace(/(\.|,)$/, '');
 
   return (
-    <article onMouseEnter={() => setHoveredOffer(props.offer)} className="cities__card place-card">
+    <article
+      onMouseEnter={() => onOfferCardHover(offer)}
+      onMouseLeave={onOfferCardLeave}
+      className="cities__card place-card"
+    >
       {isPremium && (
         <div className="place-card__mark">
           <span>Premium</span>
