@@ -5,7 +5,7 @@ import OfferGallery from '../../components/offer-gallery/offer-gallery';
 import OfferItems from '../../components/offer-items/offer-items';
 import ReviewList from '../../components/review-list/review-list';
 import ReviewForm from '../../components/review-form/review-form';
-import NearPlacesCard from '../../components/near-places-card/near-places-card';
+import OfferList from '../../components/offer-list/offer-list';
 import Map from '../../components/map/map';
 import { reviews } from '../../mocks/reviews';
 import { Offer, Point } from '../../types/types';
@@ -115,9 +115,12 @@ function OfferPage({ offers }: { offers: Offer[] }): JSX.Element {
           <section className="near-places places">
             <h2 className="near-places__title">Other places in the neighbourhood</h2>
             <div className="near-places__list places__list">
-              {offers.slice(0, 3).map((nearOffer) => (
-                <NearPlacesCard {...nearOffer} key={nearOffer.id} />
-              ))}
+              <OfferList
+                offers={offers}
+                offerViewType={'near-places'}
+                onOfferCardHover={handleNearOfferCardHover}
+                onOfferCardLeave={handleNearOfferCardLeave}
+              />
             </div>
           </section>
         </div>
