@@ -7,7 +7,7 @@ export const offers: Offer[] = [
       location: {
         latitude: 52.37403,
         longitude: 4.88969,
-        zoom: 13
+        zoom: 11
       }
     },
     previewImage: 'https://10.react.pages.academy/static/hotel/18.jpg',
@@ -60,7 +60,7 @@ export const offers: Offer[] = [
       location: {
         latitude: 52.37403,
         longitude: 4.88969,
-        zoom: 13
+        zoom: 11
       }
     },
     previewImage: 'https://10.react.pages.academy/static/hotel/19.jpg',
@@ -111,7 +111,7 @@ export const offers: Offer[] = [
       location: {
         latitude: 52.37403,
         longitude: 4.88969,
-        zoom: 13
+        zoom: 11
       }
     },
     previewImage: 'https://10.react.pages.academy/static/hotel/6.jpg',
@@ -168,7 +168,7 @@ export const offers: Offer[] = [
       location: {
         latitude: 52.37403,
         longitude: 4.88969,
-        zoom: 13
+        zoom: 11
       }
     },
     previewImage: 'https://10.react.pages.academy/static/hotel/4.jpg',
