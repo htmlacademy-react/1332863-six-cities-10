@@ -7,14 +7,14 @@ import { Offer, Point } from '../../types/types';
 
 const cities: string[] = ['Paris', 'Cologne', 'Brussels', 'Amsterdam', 'Hamburg', 'Dusseldorf'];
 
-function MainPage(props: {offers: Offer[]}): JSX.Element {
-  const city = props.offers[0].city;
-  const points = props.offers.map((offer) => offer.location);
+function MainPage({ offers }: {offers: Offer[]}): JSX.Element {
+  const city = offers[0].city;
+  const points = offers.map((offer) => offer.location);
 
   const [selectedPoint, setSelectedPoint] = useState<Point | undefined>(undefined);
 
   const handleOfferCardHover = (hoveredOffer: Offer | null) => {
-    const currentOffer = props.offers.find((offer) =>
+    const currentOffer = offers.find((offer) =>
       offer.id === hoveredOffer?.id,
     );
     setSelectedPoint(currentOffer?.location);
@@ -43,7 +43,7 @@ function MainPage(props: {offers: Offer[]}): JSX.Element {
           <div className="cities__places-container container">
             <section className="cities__places places">
               <h2 className="visually-hidden">Places</h2>
-              <b className="places__found">{props.offers.length} places to stay in Amsterdam</b>
+              <b className="places__found">{offers.length} places to stay in Amsterdam</b>
               <form className="places__sorting" action="#" method="get">
                 <span className="places__sorting-caption">Sort by</span>
                 <span className="places__sorting-type" tabIndex={0}>
@@ -69,7 +69,7 @@ function MainPage(props: {offers: Offer[]}): JSX.Element {
               </form>
               <div className="cities__places-list places__list tabs__content">
                 <OfferList
-                  offers={props.offers}
+                  offers={offers}
                   onOfferCardHover={handleOfferCardHover}
                   onOfferCardLeave={handleOfferCardLeave}
                 />

@@ -5,7 +5,6 @@ type OfferCardProps = {
   offer: Offer;
   onOfferCardHover: (hoveredOffer: Offer | null) => void;
   onOfferCardLeave: () => void;
-
 }
 
 function OfferCard({ offer, onOfferCardHover, onOfferCardLeave }: OfferCardProps): JSX.Element {

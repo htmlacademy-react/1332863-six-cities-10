@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import { useParams } from 'react-router-dom';
 import SiteHeader from '../../components/site-header/site-header';
 import OfferGallery from '../../components/offer-gallery/offer-gallery';
@@ -5,13 +6,29 @@ import OfferItems from '../../components/offer-items/offer-items';
 import ReviewList from '../../components/review-list/review-list';
 import ReviewForm from '../../components/review-form/review-form';
 import NearPlacesCard from '../../components/near-places-card/near-places-card';
+import Map from '../../components/map/map';
 import { reviews } from '../../mocks/reviews';
-import { Offer } from '../../types/types';
+import { Offer, Point } from '../../types/types';
 
 
 function OfferPage({ offers }: { offers: Offer[] }): JSX.Element {
   const { id } = useParams();
   const currentOffer: Offer | undefined = (offers.find((offer) => String(offer.id) === id));
+  const city = offers[0].city;
+  const points = offers.map((offer) => offer.location);
+
+  const [selectedPoint, setSelectedPoint] = useState<Point | undefined>(undefined);
+
+  const handleNearOfferCardHover = (hoveredOffer: Offer | null) => {
+    const currentNearOffer = offers.find((offer) =>
+      offer.id === hoveredOffer?.id,
+    );
+    setSelectedPoint(currentNearOffer?.location);
+  };
+
+  const handleNearOfferCardLeave = () => {
+    setSelectedPoint(undefined);
+  };
 
   return (
     <div className="page">
@@ -86,7 +103,13 @@ function OfferPage({ offers }: { offers: Offer[] }): JSX.Element {
               </section>
             </div>
           </div>
-          <section className="property__map map"></section>
+          <section className="property__map map">
+            <Map
+              city={city}
+              points={points}
+              selectedPoint={selectedPoint}
+            />
+          </section>
         </section>
         <div className="container">
           <section className="near-places places">
