@@ -11,7 +11,7 @@ export const reviews: Review[] = [
     },
     rating: 3,
     comment: 'The room was spacious and clean. The pool looked nothing like the photos and desparately needs a clean. The sauna and spa were closed for lunar new year holiday.',
-    date: '2022-06-02T12:25:36.939Z'
+    date: '2022-07-02T12:25:36.939Z'
   },
   {
     id: 2,
@@ -23,7 +23,7 @@ export const reviews: Review[] = [
     },
     rating: 5,
     comment: 'What an amazing view! The house is stunning and in an amazing location. The large glass wall had an amazing view of the river!',
-    date: '2022-06-02T12:25:36.939Z'
+    date: '2022-05-02T12:25:36.939Z'
   },
   {
     id: 3,

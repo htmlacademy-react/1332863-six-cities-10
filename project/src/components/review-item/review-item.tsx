@@ -1,7 +1,11 @@
 import { Review } from '../../types/types';
+import dayjs from 'dayjs';
+
 
 function ReviewItem ({ review }: { review: Review }): JSX.Element {
   const { user, rating, comment, date } = review;
+  const formattedDate = dayjs(date).format('MMMM YYYY');
+
   return (
     <li className="reviews__item">
       <div className="reviews__user user">
@@ -18,7 +22,7 @@ function ReviewItem ({ review }: { review: Review }): JSX.Element {
           </div>
         </div>
         <p className="reviews__text">{comment}</p>
-        <time className="reviews__time" dateTime={date}>{date}</time>
+        <time className="reviews__time" dateTime={date}>{formattedDate}</time>
       </div>
     </li>
   );
