@@ -15,7 +15,11 @@ function OfferPage({ offers }: { offers: Offer[] }): JSX.Element {
   const currentOffer: Offer | undefined = (offers.find((offer) => String(offer.id) === id));
   const city = offers[0].city;
   const nearPlaceOffers = offers.slice(0, 3);
-  const points = nearPlaceOffers.map((offer) => offer.location);
+  const nearPoints = nearPlaceOffers.map((offer) => offer.location);
+  const currentPoint = currentOffer?.location;
+  if (currentPoint) {
+    nearPoints.push(currentPoint);
+  }
 
   return (
     <div className="page">
@@ -93,7 +97,8 @@ function OfferPage({ offers }: { offers: Offer[] }): JSX.Element {
           <section className="property__map map">
             <Map
               city={city}
-              points={points}
+              points={nearPoints}
+              selectedPoint={currentPoint}
             />
           </section>
         </section>

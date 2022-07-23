@@ -8,7 +8,7 @@ import useMap from '../../hooks/use-map';
 type MapProps = {
   city: City;
   points: Point[];
-  selectedPoint?: Point | undefined;
+  selectedPoint: Point | undefined;
 };
 
 const defaultCustomIcon = new Icon({
