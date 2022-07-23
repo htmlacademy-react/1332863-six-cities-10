@@ -1,8 +1,3 @@
-export const OfferViewType = {
-  NEAR_PLACE: 'near-places',
-  FAVORITES: 'favorites',
-};
-
 export type Point = {
   latitude: number;
   longitude: number;

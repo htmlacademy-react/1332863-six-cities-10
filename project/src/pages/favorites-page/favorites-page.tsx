@@ -26,7 +26,7 @@ function FavoritesPage({ offers }: { offers: Offer[] }): JSX.Element {
                   <div className="favorites__places">
                     <OfferList
                       offers={offers}
-                      offerViewType={'favorites'}
+                      classPrefix={'favorites'}
                     />
                   </div>
                 </li>

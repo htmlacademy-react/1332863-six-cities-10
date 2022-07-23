@@ -1,53 +1,24 @@
 import OfferCard from '../offer-card/offer-card';
-import { Offer, OfferViewType } from '../../types/types';
+import { Offer } from '../../types/types';
 
 type OfferListProps = {
   offers: Offer[];
-  offerViewType?: string;
+  classPrefix: string;
   onOfferCardHover?: (hoveredOffer: Offer | null) => void;
   onOfferCardLeave?: () => void;
 }
 
-function OfferList({ offers, offerViewType, onOfferCardHover, onOfferCardLeave }: OfferListProps): JSX.Element {
-  const getComponentByType = (type: string | undefined, offer: Offer) => {
-    switch (type) {
-      case OfferViewType.NEAR_PLACE:
-        return (
-          <OfferCard
-            offer={offer}
-            classPrefix={offerViewType}
-            onOfferCardHover={onOfferCardHover}
-            onOfferCardLeave={onOfferCardLeave}
-            key={offer.id}
-          />
-        );
-      case OfferViewType.FAVORITES:
-        return (
-          <OfferCard
-            offer={offer}
-            classPrefix={offerViewType}
-            onOfferCardHover={onOfferCardHover}
-            onOfferCardLeave={onOfferCardLeave}
-            key={offer.id}
-          />
-        );
-      default:
-        return (
-          <OfferCard
-            offer={offer}
-            classPrefix={offerViewType}
-            onOfferCardHover={onOfferCardHover}
-            onOfferCardLeave={onOfferCardLeave}
-            key={offer.id}
-          />
-        );
-    }
-  };
-
+function OfferList({ offers, classPrefix, onOfferCardHover, onOfferCardLeave }: OfferListProps): JSX.Element {
   return (
     <>
       {offers.map((offer) => (
-        getComponentByType(offerViewType, offer)
+        <OfferCard
+          offer={offer}
+          classPrefix={classPrefix}
+          onOfferCardHover={onOfferCardHover}
+          onOfferCardLeave={onOfferCardLeave}
+          key={offer.id}
+        />
       ))}
     </>
   );

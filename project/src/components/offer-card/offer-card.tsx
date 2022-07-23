@@ -3,7 +3,7 @@ import { Offer } from '../../types/types';
 
 type OfferCardProps = {
   offer: Offer;
-  classPrefix: string | undefined;
+  classPrefix: string;
   onOfferCardHover?: (hoveredOffer: Offer | null) => void;
   onOfferCardLeave?: () => void;
 }
