@@ -3,12 +3,12 @@ import { Offer } from '../../types/types';
 
 type OfferCardProps = {
   offer: Offer;
-  onOfferCardHover: (hoveredOffer: Offer | null) => void;
-  onOfferCardLeave: () => void;
-
+  classPrefix: string;
+  onOfferCardHover?: (hoveredOffer: Offer | null) => void;
+  onOfferCardLeave?: () => void;
 }
 
-function OfferCard({ offer, onOfferCardHover, onOfferCardLeave }: OfferCardProps): JSX.Element {
+function OfferCard({ offer, classPrefix, onOfferCardHover, onOfferCardLeave }: OfferCardProps): JSX.Element {
   const { isFavorite, isPremium, previewImage, price, rating, description, type, id } = offer;
 
   const shortDescription = description
@@ -19,21 +19,27 @@ function OfferCard({ offer, onOfferCardHover, onOfferCardLeave }: OfferCardProps
 
   return (
     <article
-      onMouseEnter={() => onOfferCardHover(offer)}
-      onMouseLeave={onOfferCardLeave}
-      className="cities__card place-card"
+      onMouseEnter={() => onOfferCardHover && onOfferCardHover(offer)}
+      onMouseLeave={() => onOfferCardLeave && onOfferCardLeave()}
+      className={`${classPrefix}__card place-card`}
     >
       {isPremium && (
         <div className="place-card__mark">
           <span>Premium</span>
         </div>
       )}
-      <div className="cities__image-wrapper place-card__image-wrapper">
+      <div className={`${classPrefix}__image-wrapper place-card__image-wrapper`}>
         <Link to={`/offer/${String(id)}`}>
-          <img className="place-card__image" src={previewImage} width="260" height="200" alt="Place" />
+          <img
+            className="place-card__image"
+            src={previewImage}
+            width={classPrefix === 'favorites' ? '150' : '260'}
+            height={classPrefix === 'favorites' ? '110' : '200'}
+            alt="Place"
+          />
         </Link>
       </div>
-      <div className="place-card__info">
+      <div className={`${classPrefix === 'favorites' ? 'favorites__card-info' : ''} place-card__info`}>
         <div className="place-card__price-wrapper">
           <div className="place-card__price">
             <b className="place-card__price-value">&euro;{price}</b>
@@ -48,14 +54,14 @@ function OfferCard({ offer, onOfferCardHover, onOfferCardLeave }: OfferCardProps
         </div>
         <div className="place-card__rating rating">
           <div className="place-card__stars rating__stars">
-            <span style={{ width: `${Math.round(rating) * 20}%` }}></span>
+            <span style={{width: `${Math.round(rating) * 20}%`}}></span>
             <span className="visually-hidden">Rating</span>
           </div>
         </div>
         <h2 className="place-card__name">
           <Link to={`/offer/${String(id)}`}>{shortDescription}</Link>
         </h2>
-        <p className="place-card__type">{type}</p>
+        <p className="place-card__type">{type[0].toUpperCase() + type.substring(1)}</p>
       </div>
     </article>
   );

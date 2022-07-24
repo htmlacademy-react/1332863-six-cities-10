@@ -1,9 +1,9 @@
-import FavoritesCard from '../../components/favorites-card/favorites-card';
+import OfferList from '../../components/offer-list/offer-list';
 import SiteHeader from '../../components/site-header/site-header';
 import { Offer } from '../../types/types';
 
-function FavoritesPage(props: {offers: Offer[]}): JSX.Element {
-  const favoriteCities: string[] = [ ...new Set(props.offers.map((item) => item.city.name))];
+function FavoritesPage({ offers }: { offers: Offer[] }): JSX.Element {
+  const favoriteCities: string[] = [ ...new Set(offers.map((item) => item.city.name))];
 
   return (
     <div className="page">
@@ -24,11 +24,10 @@ function FavoritesPage(props: {offers: Offer[]}): JSX.Element {
                     </div>
                   </div>
                   <div className="favorites__places">
-                    {props.offers
-                      .filter((offer) => offer.city.name === cityName)
-                      .map((offer) => (
-                        <FavoritesCard {...offer} key={offer.id} />
-                      ))}
+                    <OfferList
+                      offers={offers}
+                      classPrefix={'favorites'}
+                    />
                   </div>
                 </li>
               ))}
