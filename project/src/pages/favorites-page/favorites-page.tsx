@@ -1,9 +1,12 @@
+import { useSelector } from 'react-redux';
 import OfferList from '../../components/offer-list/offer-list';
 import SiteHeader from '../../components/site-header/site-header';
 import { Offer } from '../../types/types';
+import { State } from '../../types/state';
 
-function FavoritesPage({ offers }: { offers: Offer[] }): JSX.Element {
-  const favoriteCities: string[] = [ ...new Set(offers.map((item) => item.city.name))];
+function FavoritesPage(): JSX.Element {
+  const allOffers = useSelector<State, Offer[]>((store) => store.allOffers);
+  const favoriteCities: string[] = [ ...new Set(allOffers.map((item) => item.city.name))];
 
   return (
     <div className="page">
@@ -25,7 +28,7 @@ function FavoritesPage({ offers }: { offers: Offer[] }): JSX.Element {
                   </div>
                   <div className="favorites__places">
                     <OfferList
-                      offers={offers}
+                      offers={allOffers}
                       classPrefix={'favorites'}
                     />
                   </div>

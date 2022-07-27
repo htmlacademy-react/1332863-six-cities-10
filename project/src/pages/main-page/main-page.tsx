@@ -7,16 +7,17 @@ import Map from '../../components/map/map';
 import { Offer, Point } from '../../types/types';
 import { State } from '../../types/state';
 
-function MainPage({ offers }: {offers: Offer[]}): JSX.Element {
+function MainPage(): JSX.Element {
   const cityName = useSelector<State>((store) => store.city);
-  const cityOffers = offers.filter((offer) => offer.city.name === cityName);
+  const allOffers = useSelector<State, Offer[]>((store) => store.allOffers);
+  const cityOffers = allOffers.filter((offer) => offer.city.name === cityName);
   const currentCity = cityOffers[0].city;
   const points = cityOffers.map((offer) => offer.location);
 
   const [selectedPoint, setSelectedPoint] = useState<Point | undefined>(undefined);
 
   const handleOfferCardHover = (hoveredOffer: Offer | null) => {
-    const currentOffer = offers.find((offer) =>
+    const currentOffer = cityOffers.find((offer) =>
       offer.id === hoveredOffer?.id,
     );
     setSelectedPoint(currentOffer?.location);
