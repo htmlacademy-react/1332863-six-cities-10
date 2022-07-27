@@ -96,7 +96,7 @@ function OfferPage({ offers }: { offers: Offer[] }): JSX.Element {
           </div>
           <section className="property__map map">
             <Map
-              city={city}
+              currentCity={city}
               points={nearPoints}
               selectedPoint={currentPoint}
             />

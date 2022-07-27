@@ -3,10 +3,10 @@ import { Offer } from '../types/types';
 export const offers: Offer[] = [
   {
     city: {
-      name: 'Amsterdam',
+      name: 'Paris',
       location: {
-        latitude: 52.37403,
-        longitude: 4.88969,
+        latitude: 48.85661,
+        longitude: 2.351499,
         zoom: 11
       }
     },
@@ -49,8 +49,8 @@ export const offers: Offer[] = [
     },
     description: 'Peaceful studio in the most wanted area in town. Quiet house Near of everything. Completely renovated. Lovely neighbourhood, lot of trendy shops, restaurants and bars in a walking distance.',
     location: {
-      latitude: 52.3909553943508,
-      longitude: 4.85309666406198,
+      latitude: 48.86861,
+      longitude: 2.342499,
       zoom: 16
     },
     id: 1
@@ -107,10 +107,10 @@ export const offers: Offer[] = [
     id: 2
   }, {
     city: {
-      name: 'Amsterdam',
+      name: 'Paris',
       location: {
-        latitude: 52.37403,
-        longitude: 4.88969,
+        latitude: 48.85661,
+        longitude: 2.351499,
         zoom: 11
       }
     },
@@ -157,8 +157,8 @@ export const offers: Offer[] = [
     },
     description: 'Discover daily local life in city center, friendly neighborhood, clandestine casino, karaoke, old-style artisans, art gallery and artist studio downstairs.',
     location: {
-      latitude: 52.3909553943508,
-      longitude: 4.929309666406198,
+      latitude: 48.83961,
+      longitude: 2.342499,
       zoom: 16
     },
     id: 3
@@ -280,10 +280,10 @@ export const offers: Offer[] = [
     id: 5
   },{
     city: {
-      name: 'Amsterdam',
+      name: 'Paris',
       location: {
-        latitude: 52.37403,
-        longitude: 4.88969,
+        latitude: 48.85661,
+        longitude: 2.351499,
         zoom: 11
       }
     },
@@ -325,8 +325,8 @@ export const offers: Offer[] = [
     },
     description: 'I am happy to welcome you to my apartment in the city center! Three words: loation, cosy and chick!',
     location: {
-      latitude: 52.39854000000006,
-      longitude: 4.799976,
+      latitude: 48.834610,
+      longitude: 2.335499,
       zoom: 16
     },
     id: 6
