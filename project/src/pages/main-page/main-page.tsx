@@ -1,20 +1,23 @@
 import { useState } from 'react';
+import { useSelector } from 'react-redux';
 import SiteHeader from '../../components/site-header/site-header';
-import LocationItem from '../../components/locations-item/locations-item';
+import LocationList from '../../components/location-list/location-list';
 import OfferList from '../../components/offer-list/offer-list';
 import Map from '../../components/map/map';
 import { Offer, Point } from '../../types/types';
+import { State } from '../../types/state';
 
-const cities: string[] = ['Paris', 'Cologne', 'Brussels', 'Amsterdam', 'Hamburg', 'Dusseldorf'];
-
-function MainPage({ offers }: {offers: Offer[]}): JSX.Element {
-  const city = offers[0].city;
-  const points = offers.map((offer) => offer.location);
+function MainPage(): JSX.Element {
+  const cityName = useSelector<State>((store) => store.city);
+  const allOffers = useSelector<State, Offer[]>((store) => store.allOffers);
+  const cityOffers = allOffers.filter((offer) => offer.city.name === cityName);
+  const currentCity = cityOffers[0].city;
+  const points = cityOffers.map((offer) => offer.location);
 
   const [selectedPoint, setSelectedPoint] = useState<Point | undefined>(undefined);
 
   const handleOfferCardHover = (hoveredOffer: Offer | null) => {
-    const currentOffer = offers.find((offer) =>
+    const currentOffer = cityOffers.find((offer) =>
       offer.id === hoveredOffer?.id,
     );
     setSelectedPoint(currentOffer?.location);
@@ -32,18 +35,14 @@ function MainPage({ offers }: {offers: Offer[]}): JSX.Element {
         <h1 className="visually-hidden">Cities</h1>
         <div className="tabs">
           <section className="locations container">
-            <ul className="locations__list tabs__list">
-              {cities.map((citi) => (
-                <LocationItem locationName={citi} isActive={false} key={citi} />
-              ))}
-            </ul>
+            <LocationList />
           </section>
         </div>
         <div className="cities">
           <div className="cities__places-container container">
             <section className="cities__places places">
               <h2 className="visually-hidden">Places</h2>
-              <b className="places__found">{offers.length} places to stay in Amsterdam</b>
+              <b className="places__found">{`${cityOffers.length} places to stay in ${cityName}`}</b>
               <form className="places__sorting" action="#" method="get">
                 <span className="places__sorting-caption">Sort by</span>
                 <span className="places__sorting-type" tabIndex={0}>
@@ -69,7 +68,7 @@ function MainPage({ offers }: {offers: Offer[]}): JSX.Element {
               </form>
               <div className="cities__places-list places__list tabs__content">
                 <OfferList
-                  offers={offers}
+                  offers={cityOffers}
                   classPrefix={'cities'}
                   onOfferCardHover={handleOfferCardHover}
                   onOfferCardLeave={handleOfferCardLeave}
@@ -79,7 +78,7 @@ function MainPage({ offers }: {offers: Offer[]}): JSX.Element {
             <div className="cities__right-section">
               <section className="cities__map map">
                 <Map
-                  city={city}
+                  currentCity={currentCity}
                   points={points}
                   selectedPoint={selectedPoint}
                 />

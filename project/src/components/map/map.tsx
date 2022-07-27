@@ -1,12 +1,12 @@
 import 'leaflet/dist/leaflet.css';
-import { Icon, Marker } from 'leaflet';
+import { Icon, Marker, LayerGroup } from 'leaflet';
 import { useRef, useEffect } from 'react';
 import { City, Point } from '../../types/types';
 import { URL_MARKER_DEFAULT, URL_MARKER_CURRENT } from '../../const';
 import useMap from '../../hooks/use-map';
 
 type MapProps = {
-  city: City;
+  currentCity: City;
   points: Point[];
   selectedPoint: Point | undefined;
 };
@@ -24,12 +24,22 @@ const currentCustomIcon = new Icon({
 });
 
 function Map(props: MapProps): JSX.Element {
-  const {city, points, selectedPoint} = props;
+  const {currentCity: {name, location}, points, selectedPoint} = props;
   const mapRef = useRef(null);
-  const map = useMap(mapRef, city);
+  const map = useMap(mapRef, props.currentCity);
+  const currentCityName = name;
+  const prevCityName = useRef<string>();
+  const markerGroup = useRef(new LayerGroup());
 
   useEffect(() => {
     if (map) {
+      markerGroup.current.addTo(map);
+      if (prevCityName.current !== currentCityName) {
+        map.setView({lat: location.latitude, lng: location.longitude}, location.zoom);
+        markerGroup.current.clearLayers();
+        prevCityName.current = currentCityName;
+      }
+
       points.forEach((point) => {
         const marker = new Marker({
           lat: point.latitude,
@@ -44,10 +54,10 @@ function Map(props: MapProps): JSX.Element {
               ? currentCustomIcon
               : defaultCustomIcon
           )
-          .addTo(map);
+          .addTo(markerGroup.current);
       });
     }
-  }, [map, points, selectedPoint]);
+  }, [currentCityName, location.latitude, location.longitude, location.zoom, map, points, selectedPoint]);
 
   return <div style={{height: '100%'}} ref={mapRef}></div>;
 }

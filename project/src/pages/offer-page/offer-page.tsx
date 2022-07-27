@@ -1,4 +1,5 @@
 import { useParams } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 import SiteHeader from '../../components/site-header/site-header';
 import OfferGallery from '../../components/offer-gallery/offer-gallery';
 import OfferItems from '../../components/offer-items/offer-items';
@@ -8,13 +9,15 @@ import OfferList from '../../components/offer-list/offer-list';
 import Map from '../../components/map/map';
 import { reviews } from '../../mocks/reviews';
 import { Offer } from '../../types/types';
+import { State } from '../../types/state';
 
 
-function OfferPage({ offers }: { offers: Offer[] }): JSX.Element {
+function OfferPage(): JSX.Element {
+  const allOffers = useSelector<State, Offer[]>((store) => store.allOffers);
   const { id } = useParams();
-  const currentOffer: Offer | undefined = (offers.find((offer) => String(offer.id) === id));
-  const city = offers[0].city;
-  const nearPlaceOffers = offers.slice(0, 3);
+  const currentOffer: Offer | undefined = (allOffers.find((offer) => String(offer.id) === id));
+  const city = allOffers[0].city;
+  const nearPlaceOffers = allOffers.slice(0, 3);
   const nearPoints = nearPlaceOffers.map((offer) => offer.location);
   const currentPoint = currentOffer?.location;
   if (currentPoint) {
@@ -96,7 +99,7 @@ function OfferPage({ offers }: { offers: Offer[] }): JSX.Element {
           </div>
           <section className="property__map map">
             <Map
-              city={city}
+              currentCity={city}
               points={nearPoints}
               selectedPoint={currentPoint}
             />
