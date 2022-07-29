@@ -13,15 +13,15 @@ import { State } from '../../types/state';
 
 
 function OfferPage(): JSX.Element {
-  const allOffers = useSelector<State, Offer[]>((store) => store.allOffers);
+  const allOffers = useSelector<State, Offer[] | null>((store) => store.allOffers);
   const { id } = useParams();
-  const currentOffer: Offer | undefined = (allOffers.find((offer) => String(offer.id) === id));
-  const city = allOffers[0].city;
-  const nearPlaceOffers = allOffers.slice(0, 3);
-  const nearPoints = nearPlaceOffers.map((offer) => offer.location);
+  const currentOffer: Offer | undefined = (allOffers?.find((offer) => String(offer.id) === id));
+  const city = allOffers ? allOffers[0].city : null;
+  const nearPlaceOffers = allOffers?.slice(0, 3);
+  const nearPoints = nearPlaceOffers?.map((offer) => offer.location);
   const currentPoint = currentOffer?.location;
   if (currentPoint) {
-    nearPoints.push(currentPoint);
+    nearPoints?.push(currentPoint);
   }
 
   return (
@@ -98,21 +98,23 @@ function OfferPage(): JSX.Element {
             </div>
           </div>
           <section className="property__map map">
-            <Map
-              currentCity={city}
-              points={nearPoints}
-              selectedPoint={currentPoint}
-            />
+            {city && nearPoints ?
+              <Map
+                currentCity={city}
+                points={nearPoints}
+                selectedPoint={currentPoint}
+              /> : ''}
           </section>
         </section>
         <div className="container">
           <section className="near-places places">
             <h2 className="near-places__title">Other places in the neighbourhood</h2>
             <div className="near-places__list places__list">
-              <OfferList
-                offers={nearPlaceOffers}
-                classPrefix={'near-places'}
-              />
+              {nearPlaceOffers ?
+                <OfferList
+                  offers={nearPlaceOffers}
+                  classPrefix={'near-places'}
+                /> : ''}
             </div>
           </section>
         </div>

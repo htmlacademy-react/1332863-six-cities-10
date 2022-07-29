@@ -47,3 +47,9 @@ export type Review = {
     name: string
   }
 }
+
+export type InitialState = {
+  city: string;
+  allOffers: Offer[] | null;
+  sortType: string;
+};
