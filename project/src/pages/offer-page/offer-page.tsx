@@ -7,7 +7,7 @@ import ReviewList from '../../components/review-list/review-list';
 import ReviewForm from '../../components/review-form/review-form';
 import OfferList from '../../components/offer-list/offer-list';
 import Map from '../../components/map/map';
-import { reviews } from '../../mocks/reviews';
+
 import { Offer } from '../../types/types';
 import { State } from '../../types/state';
 

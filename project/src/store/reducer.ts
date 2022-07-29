@@ -1,6 +1,6 @@
 import { createReducer } from '@reduxjs/toolkit';
 import { changeCity, changeSortType } from './action';
-import { offers } from '../mocks/offers';
+
 import { SortType } from '../const';
 
 const initialState = {
