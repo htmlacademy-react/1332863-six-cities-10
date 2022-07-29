@@ -64,7 +64,7 @@ function MainPage(): JSX.Element {
               <SortOffers />
               <div className="cities__places-list places__list tabs__content">
                 <OfferList
-                  offers={sortOffers(currentSortType ,cityOffers)}
+                  offers={sortOffers(currentSortType, cityOffers)}
                   classPrefix={'cities'}
                   onOfferCardHover={handleOfferCardHover}
                   onOfferCardLeave={handleOfferCardLeave}
