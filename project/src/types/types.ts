@@ -52,4 +52,5 @@ export type InitialState = {
   city: string;
   allOffers: Offer[] | null;
   sortType: string;
+  authorizationStatus: string;
 };
