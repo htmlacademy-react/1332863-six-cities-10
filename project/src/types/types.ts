@@ -54,6 +54,7 @@ export type InitialState = {
   sortType: string;
   authorizationStatus: string;
   error: string | null;
+  isDataLoaded: boolean;
 };
 
 export type AuthData = {
