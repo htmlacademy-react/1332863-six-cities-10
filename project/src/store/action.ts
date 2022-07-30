@@ -14,6 +14,6 @@ export const loadOffers = createAction<Offer[]>('getHotels');
 
 export const setDataLoadedStatus = createAction<boolean>('setDataLoadedStatus');
 
-export const requireAuthorization = createAction<AuthorizationStatus>('requireAuthorization');
+export const setAuthorizationStatus = createAction<AuthorizationStatus>('setAuthorizationStatus');
 
 export const setError = createAction<string | null>('setError');
