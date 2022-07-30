@@ -53,4 +53,16 @@ export type InitialState = {
   allOffers: Offer[] | null;
   sortType: string;
   authorizationStatus: string;
+  error: string | null;
+};
+
+export type AuthData = {
+  login: string;
+  password: string;
+};
+
+export type UserData = {
+  id: number;
+  email: string;
+  token: string;
 };

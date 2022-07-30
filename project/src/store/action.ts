@@ -13,3 +13,5 @@ export const changeSortType = createAction('changeSortType', (sortType) => ({
 export const loadOffers = createAction<Offer[]>('getHotels');
 
 export const requireAuthorization = createAction<AuthorizationStatus>('requireAuthorization');
+
+export const setError = createAction<string | null>('setError');
