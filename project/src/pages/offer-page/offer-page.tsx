@@ -13,6 +13,20 @@ import { State } from '../../types/state';
 
 
 function OfferPage(): JSX.Element {
+  const tempVarInstedReviewsArray = [
+    {
+      comment: 'string',
+      date: 'string',
+      id: 1,
+      rating: 4,
+      user: {
+        avatarUrl: 'string',
+        id: 4,
+        isPro: true,
+        name: 'string'
+      }
+    }];
+
   const allOffers = useSelector<State, Offer[] | null>((store) => store.allOffers);
   const { id } = useParams();
   const currentOffer: Offer | undefined = (allOffers?.find((offer) => String(offer.id) === id));
@@ -92,7 +106,7 @@ function OfferPage(): JSX.Element {
                 </div>
               </div>
               <section className="property__reviews reviews">
-                <ReviewList reviews={reviews} />
+                <ReviewList reviews={tempVarInstedReviewsArray} />
                 <ReviewForm />
               </section>
             </div>

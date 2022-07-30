@@ -5,8 +5,8 @@ import { Offer } from '../../types/types';
 import { State } from '../../types/state';
 
 function FavoritesPage(): JSX.Element {
-  const allOffers = useSelector<State, Offer[]>((store) => store.allOffers);
-  const favoriteCities: string[] = [ ...new Set(allOffers.map((item) => item.city.name))];
+  const allOffers = useSelector<State, Offer[] | null>((store) => store.allOffers);
+  const favoriteCities: string[] = [ ...new Set(allOffers?.map((item) => item.city.name))];
 
   return (
     <div className="page">
@@ -27,10 +27,11 @@ function FavoritesPage(): JSX.Element {
                     </div>
                   </div>
                   <div className="favorites__places">
-                    <OfferList
-                      offers={allOffers}
-                      classPrefix={'favorites'}
-                    />
+                    {allOffers ?
+                      <OfferList
+                        offers={allOffers}
+                        classPrefix={'favorites'}
+                      /> : ''}
                   </div>
                 </li>
               ))}

@@ -50,7 +50,7 @@ function MainPage(): JSX.Element {
     <div className="page page--gray page--main">
       <SiteHeader isActive count={4} />
 
-      <main className="page__main page__main--index">
+      <main className={`page__main page__main--index ${cityOffers ? '' : 'page__main--index-empty'}`}>
         <h1 className="visually-hidden">Cities</h1>
         <div className="tabs">
           <section className="locations container">
