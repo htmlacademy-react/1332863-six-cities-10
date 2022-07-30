@@ -11,6 +11,12 @@ export enum AuthorizationStatus {
   Unknown = 'UNKNOWN',
 }
 
+export enum APIRoute {
+  Offers = '/hotels',
+  Login = '/login',
+  Logout = '/logout',
+}
+
 export enum SortType {
   Popular = 'Popular',
   PriceToHigh = 'Price: low to high',
@@ -37,3 +43,5 @@ export const CITIES = [
 export const URL_MARKER_DEFAULT = 'img/pin.svg';
 
 export const URL_MARKER_CURRENT = 'img/pin-active.svg';
+
+export const TIMEOUT_SHOW_ERROR = 3000;

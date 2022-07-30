@@ -47,3 +47,23 @@ export type Review = {
     name: string
   }
 }
+
+export type InitialState = {
+  city: string;
+  allOffers: Offer[] | null;
+  sortType: string;
+  authorizationStatus: string;
+  error: string | null;
+  isDataLoaded: boolean;
+};
+
+export type AuthData = {
+  login: string;
+  password: string;
+};
+
+export type UserData = {
+  id: number;
+  email: string;
+  token: string;
+};

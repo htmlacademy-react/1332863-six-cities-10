@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { changeSortType } from '../../store/action';
 import { AppDispatch, State } from '../../types/state';
@@ -17,6 +17,15 @@ function SortOffers(): JSX.Element {
     }
   };
 
+  document.addEventListener('click', (evt) => {
+    const evtTarget = evt.target as HTMLElement;
+    if (evtTarget.className !== 'places__sorting-type' &&
+        evtTarget.className !== 'places__option' &&
+        activeClass === 'places__options--opened') {
+      toggleActiveClass();
+    }
+  });
+
   return (
     <form className="places__sorting" action="#" method="get">
       <span className="places__sorting-caption">Sort by</span>
@@ -29,7 +38,10 @@ function SortOffers(): JSX.Element {
       <ul className={`places__options places__options--custom ${activeClass}`}>
         {SORT_TYPES.map((sortType) => (
           <li
-            onClick={(evt) => dispatch(changeSortType(evt.currentTarget.textContent))}
+            onClick={(evt) => {
+              toggleActiveClass();
+              dispatch(changeSortType(evt.currentTarget.textContent));
+            }}
             className={`places__option ${currentSortType === sortType ? 'places__option--active' : ''}`}
             key={sortType}
             tabIndex={0}
