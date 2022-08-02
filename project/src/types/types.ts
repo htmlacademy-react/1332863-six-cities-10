@@ -48,7 +48,7 @@ export type Review = {
   }
 }
 
-type UserInfo = {
+export type UserInfo = {
   avatarUrl: string
   email: string
   id: number

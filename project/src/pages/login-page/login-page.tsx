@@ -5,13 +5,19 @@ import { loginAction } from '../../store/api-actions';
 import { AuthData } from '../../types/types';
 import { AppRoute } from '../../const';
 import { AppDispatch } from '../../types/state';
+import { getToken } from '../../services/token';
 
 function LoginPage(): JSX.Element {
   const loginRef = useRef<HTMLInputElement | null>(null);
   const passwordRef = useRef<HTMLInputElement | null>(null);
+  const authToken = getToken();
 
   const dispatch = useDispatch<AppDispatch>();
   const navigate = useNavigate();
+
+  if (authToken) {
+    navigate(AppRoute.Root);
+  }
 
   const onSubmit = (authData: AuthData) => {
     dispatch(loginAction(authData));
@@ -74,7 +80,6 @@ function LoginPage(): JSX.Element {
                 />
               </div>
               <button
-                onClick={() => navigate(AppRoute.Root)}
                 className="login__submit form__submit button"
                 type="submit"
               >
