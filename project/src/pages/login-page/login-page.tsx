@@ -1,23 +1,24 @@
-import { useRef, FormEvent } from 'react';
+import { useRef, useEffect, FormEvent } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { loginAction } from '../../store/api-actions';
+import { AppDispatch, State } from '../../types/state';
 import { AuthData } from '../../types/types';
-import { AppRoute } from '../../const';
-import { AppDispatch } from '../../types/state';
-import { getToken } from '../../services/token';
+import { AppRoute, AuthorizationStatus } from '../../const';
 
 function LoginPage(): JSX.Element {
   const loginRef = useRef<HTMLInputElement | null>(null);
   const passwordRef = useRef<HTMLInputElement | null>(null);
-  const authToken = getToken();
+  const authorizationStatus = useSelector<State, string>((store) => store.authorizationStatus);
 
   const dispatch = useDispatch<AppDispatch>();
   const navigate = useNavigate();
 
-  if (authToken) {
-    navigate(AppRoute.Root);
-  }
+  useEffect(() => {
+    if (authorizationStatus === AuthorizationStatus.Auth) {
+      navigate(AppRoute.Root);
+    }
+  });
 
   const onSubmit = (authData: AuthData) => {
     dispatch(loginAction(authData));
