@@ -66,7 +66,8 @@ function LoginPage(): JSX.Element {
                   className="login__input form__input"
                   type="email" name="email"
                   placeholder="Email"
-                  required={false}
+                  pattern='[a-zA-Z0-9\._]+@[a-zA-Z0-9\.-]+\.[a-zA-Z]{2,4}'
+                  required
                 />
               </div>
               <div className="login__input-wrapper form__input-wrapper">
@@ -77,7 +78,8 @@ function LoginPage(): JSX.Element {
                   type="password"
                   name="password"
                   placeholder="Password"
-                  required={false}
+                  pattern="(?=.*[0-9])(?=.*[a-zA-Z])[a-zA-Z0-9]{2,16}"
+                  required
                 />
               </div>
               <button
